@@ -5,3 +5,4 @@ __pycache__/
 pkg/
 src/
 *.tar.gz
+packaging/miku-desktop/

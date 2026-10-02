@@ -35,3 +35,12 @@ python tests/integration_install.py --archive /path/to/the-pinned-webmeji.zip
 
 It requires the exact archive specified by `assets.json` and a live Hyprland
 session. It does not edit your real Hyprland config or replace your shell.
+
+## Initial release validation
+
+Version 0.1.0 was checked with Quickshell 0.3.1 and Hyprland 0.56.2 on an
+Arch-based system. The standalone graphical smoke test, real temporary-user
+install/update/uninstall, 18 Python unit tests, physics tests, and an actual
+`makepkg` build from the public repository passed. GitHub Actions also runs the
+headless suite with Python 3.10. This does not certify every notification daemon
+or shell version; see the renderer-specific compatibility table.
