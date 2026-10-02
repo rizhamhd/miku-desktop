@@ -1,0 +1,7 @@
+__pycache__/
+*.py[cod]
+.pytest_cache/
+*.pkg.tar.*
+pkg/
+src/
+*.tar.gz

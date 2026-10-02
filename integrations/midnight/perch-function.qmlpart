@@ -1,0 +1,22 @@
+    // Return only visible popup edges, in this screen's logical coordinates.
+    function perchRects() {
+        const win = QsWindow.window;
+        if (!win || !visible) return [];
+        const viewport = list.mapToItem(win.contentItem, 0, 0);
+        const rects = [];
+        for (let i = 0; i < list.count; ++i) {
+            const wrapper = list.itemAtIndex(i);
+            if (!wrapper || !wrapper.enabled || !wrapper.modelData || wrapper.modelData.closed || !wrapper.modelData.popup) continue;
+            const item = wrapper.perchItem;
+            const pos = item.mapToItem(win.contentItem, 0, 0);
+            if (pos.y < viewport.y - 1 || pos.y >= viewport.y + list.height) continue;
+            const left = Math.max(pos.x, viewport.x);
+            const right = Math.min(pos.x + item.width, viewport.x + list.width);
+            if (right - left < 40) continue;
+            rects.push({id: "notification:" + wrapper.modelData.notificationId,
+                left: left, right: right, top: pos.y,
+                bottom: Math.min(pos.y + item.height, viewport.y + list.height),
+                rank: 1000000 + i});
+        }
+        return rects;
+    }

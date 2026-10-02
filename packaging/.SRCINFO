@@ -1,0 +1,18 @@
+pkgbase = miku-desktop-git
+	pkgdesc = Standalone desktop companion for Hyprland with window and notification perching
+	pkgver = 0.1.0.r1
+	pkgrel = 1
+	url = https://github.com/rizhamhd/miku-desktop
+	arch = any
+	license = GPL-3.0-only
+	makedepends = git
+	depends = hyprland
+	depends = quickshell
+	depends = python
+	optdepends = libnotify: sending a test notification
+	provides = miku-desktop
+	conflicts = miku-desktop
+	source = miku-desktop::git+https://github.com/rizhamhd/miku-desktop.git
+	sha256sums = SKIP
+
+pkgname = miku-desktop-git

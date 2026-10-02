@@ -1,0 +1,26 @@
+# Maintainer: Rex <https://github.com/rizhamhd>
+pkgname=miku-desktop-git
+pkgver=0.1.0.r1
+pkgrel=1
+pkgdesc='Standalone desktop companion for Hyprland with window and notification perching'
+arch=('any')
+url='https://github.com/rizhamhd/miku-desktop'
+license=('GPL-3.0-only')
+depends=('hyprland' 'quickshell' 'python')
+makedepends=('git')
+optdepends=('libnotify: sending a test notification')
+provides=('miku-desktop')
+conflicts=('miku-desktop')
+source=("miku-desktop::git+https://github.com/rizhamhd/miku-desktop.git")
+sha256sums=('SKIP')
+pkgver() {
+    cd "$srcdir/miku-desktop"
+    printf '0.1.0.r%s.%s' "$(git rev-list --count HEAD)" "$(git rev-parse --short HEAD)"
+}
+package() {
+    cd "$srcdir/miku-desktop"
+    install -dm755 "$pkgdir/usr/share/miku-desktop" "$pkgdir/usr/bin"
+    cp -r app bin miku integrations docs assets.json LICENSE NOTICE.md README.md "$pkgdir/usr/share/miku-desktop/"
+    ln -s ../share/miku-desktop/bin/miku-desktop "$pkgdir/usr/bin/miku-desktop"
+    install -Dm644 LICENSE "$pkgdir/usr/share/licenses/$pkgname/LICENSE"
+}
